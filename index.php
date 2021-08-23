@@ -1,15 +1,15 @@
 <?php
 require_once('includes/init.php');
-//Ovaj statement je tu da ne bi bilo errora da nisu setovane varijable.
+//This if statement is here so there wouldn't be errors about variables not being set.
 if(isset($_POST['submit'])){
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
-    //Regex metoda, vraca true/false
+    //Regex method, returns true/false
     $regex = $user->Regex($email);
     if(!$regex) {
         $message = "Email format is incorrect!";
     } else {
-        //Postavljam parametre za request metodu.
+        //Parameters for the Request method.
         $url = "https://fws-api-test-be.herokuapp.com/api/token";
         $headers = array(
             "Content-Type: application/json",
@@ -23,13 +23,13 @@ if(isset($_POST['submit'])){
           "client_secret": "8CmyVWf9dzPqbywdFuGDCcyOozvchn8I1dgdSgsk"
         }
         DATA;
-        //Metoda za POST REQUEST, vraca false/JSON decode u array.
+        //Method for POST REQUEST, returns false/JSON decoded in array.
         $check = $request->postRequest($url, $headers, $data);
-        //If statement u slucaju da POST metoda vrati false
+        //If statement in case that the POST method returns false
         if(!$check) {
             $message = "Wrong email or password";
         } else {
-          //Stavlja access_token u $_SESSION i koristi ga u properties/index.php
+          //Puts access_token into $_SESSION and uses it in properties/index.php
           session_start();
           $_SESSION['key'] = $check['access_token'];
           header("Location: properties/");
