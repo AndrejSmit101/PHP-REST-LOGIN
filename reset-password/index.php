@@ -1,17 +1,17 @@
 <?php
 require_once('../includes/init.php');
-//Ovaj statement je tu da ne bi bilo errora da nisu setovane varijable.
+//This if statement is here so there wouldn't be errors about variables not being set.
 if(isset($_POST['submit'])) {
     $email = trim($_POST['email']);
-    //Parametri za metodu.
+    //Parameters for the method.
     $url = "https://fws-api-test-be.herokuapp.com/api/request-reset-password?email=$email";
     $headers = array(
         'Accept: application/json',
         'Content-Type: application/json',
       );
-    //Metoda za GET REQUEST, vraca false/JSON Decode u array.
+    //Method for the GET REQUEST, returns false/JSON Decoded in array.
     $check = $request->getRequest($url, $headers);
-    //Ako metoda iznad vrati false. Error handling je kustomizovan za Vas, ne za klijenta.
+    //If the method above returns false. Error handling is customized for a developer, not for a client.
     if(!$check) {
         die("There was an error with the API, HTTP CODE WAS NOT 200");
     } else {
