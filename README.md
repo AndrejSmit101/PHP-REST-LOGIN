@@ -1,9 +1,9 @@
 # Sumarry
-Nisam koristio nijedan framework. Koristio sam cist PHP v7.4.
-Pratio sam PSR2 code-style. Nadam se da sam ga ispratio skroz, prvi put sam ga koristio.
-U subotu uvece mi je sinulo da radim sve pogresno, pa sam tu celu noc pisao i smisljao sve ispocetka. Koristio sam cURL da kontaktiram API i da uzmem odredjene podatke nazad. Ovaj projekat me je odgurnuo iz comfor zone totalno. Za ovaj kod nije trebalo puno vremena, ali za prethodni koji je bio pogresan mi je trebala cela nedelja. Sve je testirano, sve bi trebalo da radi :)
+I haven't used any frameworks for this project, I used pure PHP v7.4.
+I followed PSR2 code-style. I hope I followed it thoroughly since this is my first time using it.
+On saturday night I realized that I've been doing everything wrong, so I re-wrote the whole project that night. I used cURL for contacting the API and to retrieve data from it. This project has pushed me out of my comfort zone. It didn't take long for this code, but for the previous, wrong one, it took me a whole week. Everything is tested and it should work properly :)
 # Properties
-Properties stranicu nisam uradio. Nisam znao kako da uradim tu stranicu iako sam upoznat za CRUD operacijama. Uradjen je request na get properties, i outputovao sam jedan title. JSON Decodovao sam response, stavio ga u array i dalje nisam znao kako da handleujem sa njim. Kako da ga listujem, i kako da ga koristim.
+Saddly I didn't finish the properties page. I didn't knew how to do it even though I am familiar with CRUD operations. I did one request though, and I outputted one title. I JSON Decoded the response from the API, put it in an array and after that I didn't know how to handle that array. How to list the array and how to use it.
 # Rewrite Rules
 ```
 RewriteEngine On
@@ -11,6 +11,6 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ reset.php?token=$1&email=$2 [QSA]
 ```
 
-Ovaj rewrite rule radi. Prethodni rewrite rule je strip outovao email $_GET value. Modifikovao sam ga da ne bi cinio tu gresku.
-Lokacija .htaccess fajla gde bi trebao ovaj rewrite rule da se stavi je u folderu reset-password, pored reset.php fajla.
+This rewrite rule works. Previous rewrite rule stripped out the email $_GET value. I modified it so it wouldn't repeat the same mistake.
+Location of the .htaccess file, where this rewrite rule should be, is located in reset-password folder right next to the reset.php file.
 
