@@ -5,9 +5,11 @@ U subotu uvece mi je sinulo da radim sve pogresno, pa sam tu celu noc pisao i sm
 # Properties
 Properties stranicu nisam uradio. Nisam znao kako da uradim tu stranicu iako sam upoznat za CRUD operacijama. Uradjen je request na get properties, i outputovao sam jedan title. JSON Decodovao sam response, stavio ga u array i dalje nisam znao kako da handleujem sa njim. Kako da ga listujem, i kako da ga koristim.
 # Rewrite Rules
+```
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ reset.php?token=$1&email=$2 [QSA]
+```
 
 Ovaj rewrite rule radi. Prethodni rewrite rule je strip outovao email $_GET value. Modifikovao sam ga da ne bi cinio tu gresku.
 Lokacija .htaccess fajla gde bi trebao ovaj rewrite rule da se stavi je u folderu reset-password, pored reset.php fajla.
