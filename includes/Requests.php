@@ -2,7 +2,7 @@
 
 class Request
 {
-  //Metoda za post request, 100% recyclable.
+  //Post request method, 100% recyclable.
   public function postRequest($param, $param2, $param3)
   {
       $url = $param;
@@ -29,7 +29,7 @@ class Request
           return $decode;
       }
   }
-  //Metoda za get request, isto 100% recycable.
+  //Get request method, also 100% recycable.
   public function getRequest($param, $param2)
   {
       $url = $param;
@@ -53,5 +53,5 @@ class Request
       }
   }
 }
-//Ovde pravim objekat, da ne moram u svakom fajlu to raditi. Accessible je preko init.php fajla. Njega ne moram komentarisati :)
+//This is where I create the object, so I wouldn't have to do it in the every file. It is accessible from the init.php file.
 $request = new Request();
