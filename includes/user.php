@@ -2,7 +2,7 @@
 
 class User
 {
-  //Regex metoda, nista vise nista manje.
+  //Regex method, nothing less nothing more.
   public function Regex($string)
   {
       $email = $string;
@@ -10,5 +10,5 @@ class User
       return $check;
   }
 }
-//Ovde pravim objekat, da ne moram u svakom fajlu to raditi. Accessible je preko init.php fajla. Njega ne moram komentarisati :)
+//This is where I create the object, so I wouldn't have to do it in the every file. It is accessible from the init.php file.
 $user = new User();
