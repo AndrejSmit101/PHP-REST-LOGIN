@@ -1,29 +1,29 @@
 <?php
 require_once('../includes/init.php');
 
-//Uzimam value iz URL u ove varijable.
+//Taking value from the URL and putting it into these variables.
 $token = $_GET['token'];
 $email = $_GET['email'];
-//Convertujem @ karakter u %40, jer URL u ovom slucaju ne prihvata @ karakter, saznao sam na tezi nacin.
+//Converting @ character into %40 so I can use it in the URL
 $emailconvert = str_replace("@", "%40", $email);
-//Postavljam parametre za metodu.
+//Parameters for the request method.
 $url = "https://fws-api-test-be.herokuapp.com/api/reset-password/$token?email=$emailconvert";
 $headers = array(
     'Accept: application/json',
     'Content-Type: application/json',
   );
-//GET REQUEST metoda, vraca false/JSON Decode u array.
+//GET REQUEST method, returns false/JSON Decoded in array.
 $check = $request->getRequest($url, $headers);
-//U slucaju da vrati false to znaci da token nije validan.
+//In case the return is false, that means the token is not valid.
 if(!$check) {
     die("Token is invalid!");
 }
-//Ako je submit postavljen, samo onda stavlja value u varijable.
+//Puts values into variables only if the form is submitted.
 if(isset($_POST['submit'])){
-    //Gleda da li su uneseni stringovi isti, i ako jesu onda ce uzeti jedan od njih i staviti u varijablu.
+    //Checking if the strings are identical, and if they are it will put one of them into a variable.
     if($_POST['password'] === $_POST['password2']) {
         $password = $_POST['password'];
-        //Drugi parametri za drugi request, u ovom fajlu pozivam dva requesta, jedan check token a drugi reset password.
+        //Second parameters for the second request method. I am using two requests in this file, one for the token check and second for the reset password.
         $url = "https://fws-api-test-be.herokuapp.com/api/reset-password";
         $headers = array(
             "Content-Type: application/json",
@@ -35,17 +35,17 @@ if(isset($_POST['submit'])){
           "token": "$token"
         }
         DATA;
-        //POST REQUEST metoda za reset password. Vraca false/JSON Decode u array.
+        //POST REQUEST method for password reset. Returns false/JSON Decoded in array.
         $reset = $request->postRequest($url, $headers, $data);
-        //U slucaju da metoda vrati false.
+        //In case where method returns false.
         if(!$reset) {
             die("There was an error");
         } else {
-            //Ako je uspesno resetovana lozinka, vratice nas na login stranicu da se ulogujemo.
+            //If the password was reset successfully, it will redirect us to the login page.
             header("Location: ../");
         }
     } else {
-        //U slucaju da uneseni stringovi nisu isti.
+        //If the strings are not identical, it will show a message.
         $message = "Entered passwords are not the same!";
     }
 
